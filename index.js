@@ -17,7 +17,6 @@ const brush = {
   posA: null,
 }
 
-//Get the x and y position of the canvas to correct the mouse position
 let { x, y } = canvas.getBoundingClientRect()
 
 const colorButtons = document.querySelectorAll(".colors")
@@ -37,25 +36,47 @@ for (const size of sizeButtons) {
   }
 }
 
-//Pressing space will erase all canvas
-document.addEventListener("keypress", (key) => {
-  if (key.key === " ") {
-    socket.emit("erase")
-  }
-})
+//Get the input an perform action
+let actions = {
+  keydown: (event) => {
+    if (event.key === " ") {
+      socket.emit("erase")
+    }
+    if (event.ctrlKey && event.key === "z") {
+      socket.emit("undo")
+    }
+  },
+  mousedown: (event) => {
+    brush.mouseDown = true
+  },
+  mouseup: (event) => {
+    brush.mouseDown = false
+  },
+  mousemove: (event) => {
+    brush.pos = { x: event.clientX - x, y: event.clientY - y }
+    brush.mouseMoving = true
+  },
+  mouseout: (event) => {
+    brush.mouseDown = false
+  },
+}
 
-document.addEventListener("keydown", (key) => {
-  if (key.ctrlKey && key.key === "z") {
-    console.log("undo")
-    socket.emit("undo")
-  }
-})
+//Handle all user inputs
+const handleInput = (event) => {
+  actions[event.type](event)
+}
 
-socket.on("erase", () => {
-  context.clearRect(0, 0, canvas.width, canvas.height)
-})
+document.addEventListener("keydown", handleInput)
 
-//Draw the line
+canvas.addEventListener("mousedown", handleInput)
+
+canvas.addEventListener("mouseup", handleInput)
+
+canvas.addEventListener("mousemove", handleInput)
+
+canvas.addEventListener("mouseout", handleInput)
+
+//Draw on the canvas
 const drawnLine = (line) => {
   context.beginPath()
   context.moveTo(line.posA.x, line.posA.y)
@@ -63,26 +84,8 @@ const drawnLine = (line) => {
   context.stroke()
 }
 
-canvas.onmousedown = () => {
-  brush.mouseDown = true
-}
-
-canvas.onmouseup = () => {
-  brush.mouseDown = false
-}
-
-canvas.onmouseout = () => {
-  brush.mouseDown = false
-}
-
-canvas.onmousemove = (event) => {
-  brush.pos = { x: event.clientX - x, y: event.clientY - y }
-  brush.mouseMoving = true
-}
-
 const cycle = () => {
   if (brush.mouseDown && brush.mouseMoving && brush.posA) {
-    //drawnLine({ pos: pincel.pos, posA: pincel.posA })
     socket.emit("draw", {
       pos: brush.pos,
       posA: brush.posA,
@@ -93,13 +96,17 @@ const cycle = () => {
   }
   brush.posA = { x: brush.pos.x, y: brush.pos.y }
 
-  window.requestAnimationFrame(cycle)
+  requestAnimationFrame(cycle)
 }
+
+cycle()
+
+socket.on("erase", () => {
+  context.clearRect(0, 0, canvas.width, canvas.height)
+})
 
 socket.on("draw", (line) => {
   context.strokeStyle = line.color
   context.lineWidth = line.width
   drawnLine(line)
 })
-
-cycle()

@@ -44,6 +44,13 @@ document.addEventListener("keypress", (key) => {
   }
 })
 
+document.addEventListener("keydown", (key) => {
+  if (key.ctrlKey && key.key === "z") {
+    console.log("undo")
+    socket.emit("undo")
+  }
+})
+
 socket.on("erase", () => {
   context.clearRect(0, 0, canvas.width, canvas.height)
 })

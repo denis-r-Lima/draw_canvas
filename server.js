@@ -27,4 +27,13 @@ io.on("connection", (socket) => {
     io.emit("erase")
     lines = []
   })
+  socket.on("undo", () => {
+    if (lines.length > 0) {
+      lines.pop()
+      io.emit("erase")
+      lines.map((line) => {
+        return io.emit("draw", line)
+      })
+    }
+  })
 })

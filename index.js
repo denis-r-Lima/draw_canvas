@@ -23,7 +23,7 @@ const colorButtons = document.querySelectorAll(".colors")
 
 const sizeButtons = document.querySelectorAll(".size")
 
-//Setting buttons to change color as size of the line
+//Setting buttons to change color and size of the line
 for (const color of colorButtons) {
   color.onclick = () => {
     strokeColor = color.id

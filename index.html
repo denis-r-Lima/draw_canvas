@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Canvas Desenho</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="tela">
+        <canvas id="canvas"> </canvas>
+      </div>
+      <div class="tools">
+        <div>
+          <div class="colors" style="background-color: red;" id="red"></div>
+          <div class="colors" style="background-color: blue;" id="blue"></div>
+          <div class="colors" style="background-color: purple;" id="purple"></div>
+          <div class="colors" style="background-color: black;" id="black"></div>
+          <div class="colors" style="background-color: green;" id="green"></div>
+          <div class="colors" style="background-color: yellow;" id="yellow"></div>
+          <div class="colors" style="background-color: orange;" id="orange"></div>
+          <div class="colors" style="background-color: greenyellow;" id="greenyellow"></div>
+        </div>
+        <div style="display: flex; align-items: center; flex-direction: column;">
+          <div
+            class="size"
+            style="width: 5px; height: 5px; background-color: black; margin: 5px;"
+            id="1"
+          ></div>
+          <div
+            class="size"
+            style="width: 10px; height: 10px; background-color: black; margin: 5px;"
+            id="2"
+          ></div>
+          <div
+            class="size"
+            style="width: 15px; height: 15px; background-color: black; margin: 5px;"
+            id="3"
+          ></div>
+          <div
+            class="size"
+            style="width: 20px; height: 20px; background-color: black; margin: 5px;"
+            id="4"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\denis\.yarn\releases\yarn-1.22.4.js add express soecket.io
+
+PATH: 
+  C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Git\cmd;C:\Users\denis\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\denis\AppData\Local\Programs\Python\Python38-32\;C:\Users\denis\AppData\Local\Microsoft\WindowsApps;C:\Users\denis\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\denis\AppData\Roaming\npm;C:\Program Files\Genymobile\Genymotion\tools;
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.16.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/soecket.io: Not found
+      at Request.params.callback [as _callback] (C:\Users\denis\.yarn\releases\yarn-1.22.4.js:78517:18)
+      at Request.self.callback (C:\Users\denis\.yarn\releases\yarn-1.22.4.js:135159:22)
+      at Request.emit (events.js:311:20)
+      at Request.<anonymous> (C:\Users\denis\.yarn\releases\yarn-1.22.4.js:136131:10)
+      at Request.emit (events.js:311:20)
+      at IncomingMessage.<anonymous> (C:\Users\denis\.yarn\releases\yarn-1.22.4.js:136053:12)
+      at Object.onceWrapper (events.js:417:28)
+      at IncomingMessage.emit (events.js:323:22)
+      at endReadableNT (_stream_readable.js:1204:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+
+npm manifest: 
+  {
+    "name": "canvas",
+    "version": "1.0.0",
+    "main": "server.js",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
